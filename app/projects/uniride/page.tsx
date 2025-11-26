@@ -679,12 +679,12 @@ export default function UniRidePage() {
         <div className="relative">
           <div
             ref={sliderRef}
-            className="scrollbar-hide flex cursor-grab gap-4 overflow-x-auto px-4 py-4 select-none active:cursor-grabbing sm:px-6 lg:px-8"
-            style={{ 
+            className="scrollbar-hide flex cursor-grab select-none gap-4 overflow-x-auto px-4 py-4 active:cursor-grabbing sm:px-6 lg:px-8"
+            style={{
               scrollBehavior: isDragging ? 'auto' : 'smooth',
               userSelect: 'none',
               WebkitUserSelect: 'none',
-              WebkitTouchCallout: 'none'
+              WebkitTouchCallout: 'none',
             }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
