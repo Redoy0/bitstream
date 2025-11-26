@@ -211,6 +211,7 @@ export default function UniRidePage() {
   // Drag/Swipe handlers for testimonials slider
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!sliderRef.current) return;
+    e.preventDefault(); // Prevent text selection on mouse down
     setIsDragging(true);
     setStartX(e.pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
@@ -229,6 +230,10 @@ export default function UniRidePage() {
     const x = e.pageX - sliderRef.current.offsetLeft;
     const walk = (x - startX) * 2;
     sliderRef.current.scrollLeft = scrollLeft - walk;
+    // Ensure grabbing cursor during drag
+    if (sliderRef.current) {
+      sliderRef.current.style.cursor = 'grabbing';
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -240,6 +245,10 @@ export default function UniRidePage() {
 
   const handleDragEnd = () => {
     setIsDragging(false);
+    // Reset cursor back to grab
+    if (sliderRef.current) {
+      sliderRef.current.style.cursor = 'grab';
+    }
   };
 
   return (
@@ -647,8 +656,13 @@ export default function UniRidePage() {
         <div className="relative">
           <div
             ref={sliderRef}
-            className="scrollbar-hide flex cursor-grab gap-4 overflow-x-auto px-4 py-4 active:cursor-grabbing sm:px-6 lg:px-8"
-            style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
+            className="scrollbar-hide flex cursor-grab gap-4 overflow-x-auto px-4 py-4 select-none active:cursor-grabbing sm:px-6 lg:px-8"
+            style={{ 
+              scrollBehavior: isDragging ? 'auto' : 'smooth',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              WebkitTouchCallout: 'none'
+            }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleDragEnd}
