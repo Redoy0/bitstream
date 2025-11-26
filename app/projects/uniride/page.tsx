@@ -671,8 +671,7 @@ export default function UniRidePage() {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleDragEnd}
           >
-            {/* Duplicate testimonials for seamless loop */}
-            {[...testimonials, ...testimonials].map((testimonial, index) => (
+            {testimonials.map((testimonial, index) => (
               <div
                 key={index}
                 className="w-[85vw] flex-shrink-0 rounded-3xl bg-gradient-to-br from-[#5CE65C]/10 to-[#1DA1F2]/10 p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]"
