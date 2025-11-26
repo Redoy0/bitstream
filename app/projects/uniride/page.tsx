@@ -211,6 +211,7 @@ export default function UniRidePage() {
   // Drag/Swipe handlers for testimonials slider
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!sliderRef.current) return;
+    e.preventDefault(); // Prevent text selection on mouse down
     setIsDragging(true);
     setStartX(e.pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
@@ -229,6 +230,10 @@ export default function UniRidePage() {
     const x = e.pageX - sliderRef.current.offsetLeft;
     const walk = (x - startX) * 2;
     sliderRef.current.scrollLeft = scrollLeft - walk;
+    // Ensure grabbing cursor during drag
+    if (sliderRef.current) {
+      sliderRef.current.style.cursor = 'grabbing';
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -240,6 +245,10 @@ export default function UniRidePage() {
 
   const handleDragEnd = () => {
     setIsDragging(false);
+    // Reset cursor back to grab
+    if (sliderRef.current) {
+      sliderRef.current.style.cursor = 'grab';
+    }
   };
 
   return (
@@ -316,9 +325,14 @@ export default function UniRidePage() {
               >
                 Terms
               </Link>
-              <button className="rounded-full bg-[#5CE65C] px-4 py-2 text-sm font-semibold text-[#333333] shadow-md transition-all duration-300 hover:scale-105 hover:bg-[#1DA1F2] hover:text-white hover:shadow-lg lg:px-6">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.asterisks.uniride"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-[#5CE65C] px-4 py-2 text-sm font-semibold text-[#333333] shadow-md transition-all duration-300 hover:scale-105 hover:bg-[#1DA1F2] hover:text-white hover:shadow-lg lg:px-6"
+              >
                 Download
-              </button>
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -390,12 +404,15 @@ export default function UniRidePage() {
                 >
                   Terms
                 </Link>
-                <button
-                  className="mt-2 w-full rounded-full bg-[#5CE65C] px-6 py-2 text-center font-semibold text-[#333333] shadow-md transition-all duration-300 hover:bg-[#1DA1F2] hover:text-white"
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.asterisks.uniride"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block w-full rounded-full bg-[#5CE65C] px-6 py-2 text-center font-semibold text-[#333333] shadow-md transition-all duration-300 hover:bg-[#1DA1F2] hover:text-white"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Download
-                </button>
+                </a>
               </div>
             </div>
           )}
@@ -435,15 +452,25 @@ export default function UniRidePage() {
               </p>
 
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-                <button className="group relative overflow-hidden rounded-full bg-[#5CE65C] px-8 py-4 text-lg font-semibold text-[#333333] shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.asterisks.uniride"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden rounded-full bg-[#5CE65C] px-8 py-4 text-lg font-semibold text-[#333333] shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                >
                   <span className="relative z-10 flex items-center justify-center">
                     📱 Get the App
                   </span>
                   <div className="absolute inset-0 -z-0 bg-[#1DA1F2] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                </button>
-                <button className="rounded-full border-2 border-[#1DA1F2] bg-white px-8 py-4 text-lg font-semibold text-[#1DA1F2] transition-all duration-300 hover:bg-[#1DA1F2]/10">
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.asterisks.uniride"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border-2 border-[#1DA1F2] bg-white px-8 py-4 text-lg font-semibold text-[#1DA1F2] transition-all duration-300 hover:bg-[#1DA1F2]/10"
+                >
                   🚴 Join as a Rider
-                </button>
+                </a>
               </div>
 
               {/* Trust indicators */}
@@ -585,9 +612,14 @@ export default function UniRidePage() {
 
           {/* CTA */}
           <div className="mt-16 text-center">
-            <button className="rounded-full bg-gradient-to-r from-[#5CE65C] to-[#1DA1F2] px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.asterisks.uniride"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-full bg-gradient-to-r from-[#5CE65C] to-[#1DA1F2] px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
               Start Your First Ride →
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -647,8 +679,13 @@ export default function UniRidePage() {
         <div className="relative">
           <div
             ref={sliderRef}
-            className="scrollbar-hide flex cursor-grab gap-4 overflow-x-auto px-4 py-4 active:cursor-grabbing sm:px-6 lg:px-8"
-            style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
+            className="scrollbar-hide flex cursor-grab select-none gap-4 overflow-x-auto px-4 py-4 active:cursor-grabbing sm:px-6 lg:px-8"
+            style={{
+              scrollBehavior: isDragging ? 'auto' : 'smooth',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              WebkitTouchCallout: 'none',
+            }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleDragEnd}
@@ -657,8 +694,7 @@ export default function UniRidePage() {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleDragEnd}
           >
-            {/* Duplicate testimonials for seamless loop */}
-            {[...testimonials, ...testimonials].map((testimonial, index) => (
+            {testimonials.map((testimonial, index) => (
               <div
                 key={index}
                 className="w-[85vw] flex-shrink-0 rounded-3xl bg-gradient-to-br from-[#5CE65C]/10 to-[#1DA1F2]/10 p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]"
@@ -770,7 +806,12 @@ export default function UniRidePage() {
                   </div>
                 </button>
 
-                <button className="flex items-center justify-center space-x-3 rounded-2xl bg-black px-6 py-4 transition-all duration-300 hover:scale-105 hover:bg-gray-900">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.asterisks.uniride"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center space-x-3 rounded-2xl bg-black px-6 py-4 transition-all duration-300 hover:scale-105 hover:bg-gray-900"
+                >
                   <svg className="h-8 w-8" viewBox="0 0 24 24" fill="white">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                   </svg>
@@ -778,7 +819,7 @@ export default function UniRidePage() {
                     <div className="text-xs">GET IT ON</div>
                     <div className="text-xl font-semibold">Google Play</div>
                   </div>
-                </button>
+                </a>
               </div>
 
               {/* Trust badges */}
