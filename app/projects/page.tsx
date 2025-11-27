@@ -329,24 +329,35 @@ export default function ProjectsPage() {
                   <div className="mb-3 flex items-center">
                     <div
                       className={`
-                      h-10 w-10 bg-gradient-to-r ${project.gradient} mr-3 flex transform items-center justify-center
+                      mr-3 flex h-10 w-10 transform items-center justify-center overflow-hidden
                       rounded-xl transition-all duration-500 sm:h-12 sm:w-12
                       ${hoveredProject === index ? 'rotate-12 scale-110' : 'group-hover:rotate-6 group-hover:scale-105'}
+                      ${project.image ? 'bg-white shadow-md' : `bg-gradient-to-r ${project.gradient}`}
                     `}
                     >
-                      <svg
-                        className="h-5 w-5 text-white sm:h-6 sm:w-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d={project.icon}
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          alt={`${project.name} icon`}
+                          width={48}
+                          height={48}
+                          className="h-full w-full object-cover"
                         />
-                      </svg>
+                      ) : (
+                        <svg
+                          className="h-5 w-5 text-white sm:h-6 sm:w-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d={project.icon}
+                          />
+                        </svg>
+                      )}
                     </div>
                     <h3 className="flex-1 text-lg font-bold text-gray-900 sm:text-xl">
                       {project.name}
