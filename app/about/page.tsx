@@ -198,35 +198,42 @@ export default function AboutPage() {
               {[
                 {
                   name: 'Shakib Howlader',
-                  role: '--------------',
+                  role: 'Software Engineer & AI Developer',
                   description:
                     'Visionary leader with 10+ years in tech. Passionate about creating scalable solutions that drive business growth.',
                   gradient: 'from-blue-500 to-purple-500',
-                  skills: ['Strategy', 'Leadership', 'Innovation'],
+                  skills: ['Python', 'Flutter', 'Dart', 'JavaScript', 'React'],
                 },
                 {
                   name: 'Md. Sabbir Ahamed',
-                  role: '--------------',
+                  role: 'Software Engineer & AI Enthusiast',
                   description:
-                    'Full-stack expert specializing in React, Node.js, and cloud architecture. Loves solving complex technical challenges.',
+                    'I`m a passionate programmer who enjoys breaking down complex problems and crafting creative solutions that push the boundaries of what’s possible.',
                   gradient: 'from-purple-500 to-pink-500',
-                  skills: ['React', 'Node.js', 'AWS'],
+                  skills: [
+                    'React',
+                    'Node.js',
+                    'Flutter',
+                    'Dart',
+                    'Python',
+                    'JavaScript',
+                  ],
                 },
                 {
                   name: 'Sakib Mahmud Rahat',
-                  role: '--------------',
+                  role: 'Software Engineer & Web Developer',
                   description:
                     'Native & cross-platform mobile development expert. Creates intuitive apps that users love to interact with.',
                   gradient: 'from-green-500 to-blue-500',
-                  skills: ['React Native', 'Flutter', 'iOS'],
+                  skills: ['Flutter', 'Python', 'Java'],
                 },
                 {
                   name: 'Syed Sabbir Ahmed',
-                  role: '--------------',
+                  role: 'Software Engineer & Mobile App Developer',
                   description:
                     'Native & cross-platform mobile development expert. Creates intuitive apps that users love to interact with.',
                   gradient: 'from-green-500 to-blue-500',
-                  skills: ['React Native', 'Flutter', 'iOS'],
+                  skills: ['Flutter', 'Python', 'JavaScript'],
                 },
               ].map((member, index) => (
                 <div key={index} className="group">
@@ -282,7 +289,10 @@ export default function AboutPage() {
           {/* Call to Action */}
           <div className="animate-fade-in-up animation-delay-1200 mt-16 text-center">
             <div className="inline-flex items-center justify-center">
-              <button className="transform rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:shadow-blue-500/25">
+              <a
+                href="/contact"
+                className="inline-flex transform items-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:shadow-blue-500/25"
+              >
                 Start Your Project
                 <svg
                   className="ml-2 inline-block h-5 w-5"
@@ -297,7 +307,7 @@ export default function AboutPage() {
                     d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -120,12 +120,18 @@ export function FooterUI() {
             </p>
 
             <div className="mb-12 flex flex-col justify-center gap-4 sm:flex-row">
-              <button className="transform rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-2xl hover:shadow-blue-500/25">
+              <a
+                href="/contact"
+                className="inline-block transform rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-center font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-2xl hover:shadow-blue-500/25"
+              >
                 Start Your Project
-              </button>
-              <button className="transform rounded-full border border-white/20 bg-white/10 px-8 py-4 font-semibold text-white backdrop-blur-lg transition-all duration-300 hover:scale-105 hover:bg-white/20">
+              </a>
+              <a
+                href="/projects"
+                className="inline-block transform rounded-full border border-white/20 bg-white/10 px-8 py-4 text-center font-semibold text-white backdrop-blur-lg transition-all duration-300 hover:scale-105 hover:bg-white/20"
+              >
                 View Our Work
-              </button>
+              </a>
             </div>
           </div>
 

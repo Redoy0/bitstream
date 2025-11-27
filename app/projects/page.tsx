@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const projects = [
   {
@@ -16,6 +17,7 @@ const projects = [
     bgGradient: 'from-green-50 to-teal-50',
     mockupColor: 'bg-green-100',
     link: '/projects/uniride',
+    image: '/images/ur_logo.jpg',
   },
   {
     name: 'Litaria',
@@ -28,6 +30,7 @@ const projects = [
     gradient: 'from-blue-500 to-cyan-500',
     bgGradient: 'from-blue-50 to-cyan-50',
     mockupColor: 'bg-blue-100',
+    image: null,
   },
 
   {
@@ -41,6 +44,7 @@ const projects = [
     gradient: 'from-blue-500 to-indigo-500',
     bgGradient: 'from-blue-50 to-indigo-50',
     mockupColor: 'bg-blue-100',
+    image: null,
   },
 
   {
@@ -54,6 +58,7 @@ const projects = [
     gradient: 'from-purple-500 to-pink-500',
     bgGradient: 'from-purple-50 to-pink-50',
     mockupColor: 'bg-purple-100',
+    image: null,
   },
   {
     name: 'ScheduLearn',
@@ -66,6 +71,7 @@ const projects = [
     gradient: 'from-orange-500 to-red-500',
     bgGradient: 'from-orange-50 to-red-50',
     mockupColor: 'bg-orange-100',
+    image: null,
   },
   {
     name: 'DIU LeaderBoard',
@@ -78,6 +84,7 @@ const projects = [
     gradient: 'from-indigo-500 to-purple-500',
     bgGradient: 'from-indigo-50 to-purple-50',
     mockupColor: 'bg-indigo-100',
+    image: null,
   },
 ];
 
@@ -223,63 +230,78 @@ export default function ProjectsPage() {
                 />
 
                 {/* Mockup Header */}
-                <div className="relative flex h-28 items-center justify-center overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 sm:h-32">
-                  {/* Browser mockup for web projects */}
-                  {project.category.includes('Web') && (
-                    <div className="relative h-full w-full bg-gray-50">
-                      <div className="absolute left-2 top-2 flex gap-1">
-                        <div className="h-2 w-2 rounded-full bg-red-400"></div>
-                        <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
-                        <div className="h-2 w-2 rounded-full bg-green-400"></div>
-                      </div>
-                      <div className="mx-4 mt-6 space-y-2">
-                        <div
-                          className={`h-3 ${project.mockupColor} w-3/4 rounded-full`}
-                        ></div>
-                        <div
-                          className={`h-2 ${project.mockupColor} w-1/2 rounded-full opacity-60`}
-                        ></div>
-                        <div
-                          className={`h-2 ${project.mockupColor} w-2/3 rounded-full opacity-40`}
-                        ></div>
-                      </div>
+                <div className="relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 sm:h-56">
+                  {/* Project Image if available */}
+                  {project.image ? (
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={project.image}
+                        alt={project.name}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                     </div>
-                  )}
+                  ) : (
+                    <>
+                      {/* Browser mockup for web projects */}
+                      {project.category.includes('Web') && (
+                        <div className="relative h-full w-full bg-gray-50">
+                          <div className="absolute left-2 top-2 flex gap-1">
+                            <div className="h-2 w-2 rounded-full bg-red-400"></div>
+                            <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
+                            <div className="h-2 w-2 rounded-full bg-green-400"></div>
+                          </div>
+                          <div className="mx-4 mt-6 space-y-2">
+                            <div
+                              className={`h-3 ${project.mockupColor} w-3/4 rounded-full`}
+                            ></div>
+                            <div
+                              className={`h-2 ${project.mockupColor} w-1/2 rounded-full opacity-60`}
+                            ></div>
+                            <div
+                              className={`h-2 ${project.mockupColor} w-2/3 rounded-full opacity-40`}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
 
-                  {/* Mobile mockup */}
-                  {project.category === 'Mobile App' && (
-                    <div className="relative flex h-28 w-16 flex-col items-center justify-center rounded-lg bg-gray-800">
-                      <div className="h-20 w-12 rounded-md bg-white p-1">
-                        <div
-                          className={`h-2 w-full ${project.mockupColor} mb-1 rounded-full`}
-                        ></div>
-                        <div
-                          className={`h-1 w-3/4 ${project.mockupColor} mb-1 rounded-full opacity-60`}
-                        ></div>
-                        <div
-                          className={`h-1 w-1/2 ${project.mockupColor} rounded-full opacity-40`}
-                        ></div>
-                      </div>
-                    </div>
-                  )}
+                      {/* Mobile mockup */}
+                      {project.category === 'Mobile App' && (
+                        <div className="relative flex h-28 w-16 flex-col items-center justify-center rounded-lg bg-gray-800">
+                          <div className="h-20 w-12 rounded-md bg-white p-1">
+                            <div
+                              className={`h-2 w-full ${project.mockupColor} mb-1 rounded-full`}
+                            ></div>
+                            <div
+                              className={`h-1 w-3/4 ${project.mockupColor} mb-1 rounded-full opacity-60`}
+                            ></div>
+                            <div
+                              className={`h-1 w-1/2 ${project.mockupColor} rounded-full opacity-40`}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
 
-                  {/* IoT Platform mockup */}
-                  {project.category === 'IoT Platform' && (
-                    <div className="flex items-center gap-2">
-                      <div
-                        className={`h-8 w-8 ${project.mockupColor} flex items-center justify-center rounded-lg`}
-                      >
-                        <div className="h-4 w-4 animate-pulse rounded-full bg-white"></div>
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <div
-                          className={`h-1 w-12 ${project.mockupColor} rounded-full`}
-                        ></div>
-                        <div
-                          className={`h-1 w-8 ${project.mockupColor} rounded-full opacity-60`}
-                        ></div>
-                      </div>
-                    </div>
+                      {/* IoT Platform mockup */}
+                      {project.category === 'IoT Platform' && (
+                        <div className="flex items-center gap-2">
+                          <div
+                            className={`h-8 w-8 ${project.mockupColor} flex items-center justify-center rounded-lg`}
+                          >
+                            <div className="h-4 w-4 animate-pulse rounded-full bg-white"></div>
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <div
+                              className={`h-1 w-12 ${project.mockupColor} rounded-full`}
+                            ></div>
+                            <div
+                              className={`h-1 w-8 ${project.mockupColor} rounded-full opacity-60`}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
 
