@@ -17,7 +17,7 @@ At BitStream, we're passionate about creating digital solutions that make a diff
 
 ### ✨ Live Demo
 
-Visit our live demo: [bitstream-demo.vercel.app](https://bitstream-demo.vercel.app)
+Visit our live demo: [https://www.bitstreamhq.com/](https://www.bitstreamhq.com/)
 
 ## 🎯 Features
 
